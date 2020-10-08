@@ -1,0 +1,98 @@
+﻿@model List<AlgebraSeminar.Models.Predbiljezba>
+@{
+    ViewBag.Title = "OdabirPoStatusuPredbiljezbe";
+}
+
+<div class="jumbotron bg-my-pink text-white">
+    <h1>Podaci o predbilježbama</h1>
+    <br />
+    <p>
+        Ovdje se nalazi popis svih zaprimljenih predbilježbi na seminare. <br />
+        Zaprimljene predbilježbe se mogu prihvatiti ili odbiti, no prihvaćanje je moguće samo ukoliko seminar nije popunjen. <br />
+        Popunjeni seminari označeni su crvenom, a oni u kojima ima još slobodnih mjesta zelenom bojom.
+    </p>
+    <p>Broj upisanih polaznika za pojedini seminar te status seminara (popunjenost) automatski se ažurira.</p>
+    <p>Za svaku je predbilježbu moguće dodati napomenu odabirom opcije "Uredi".</p>
+    <br />
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="/Predbiljezbe/Index"><button type="submit" class="btn btn-white">Sve</button></a>
+        <a href="/Predbiljezbe/OdabirPoStatusuPredbiljezbe/Zaprimljena"><button type="submit" class="btn btn-white">Zaprimljene</button></a>
+        <a href="/Predbiljezbe/OdabirPoStatusuPredbiljezbe/Prihvaćena"><button type="submit" class="btn btn-white">Prihvaćene</button></a>
+        <a href="/Predbiljezbe/OdabirPoStatusuPredbiljezbe/Odbijena"><button type="submit" class="btn btn-white">Odbijene</button></a>
+    </div>
+</div>
+
+<table class="table table-hover mt-5 bg-white">
+    <thead>
+        <tr>
+            <th scope="col">Broj prijave</th>
+            <th scope="col">Datum prijave</th>
+            <th scope="col">Ime i prezime</th>
+            <th scope="col">Adresa</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefon</th>
+            <th scope="col">Seminar</th>
+            <th>Status predbilježbe</th>
+            <th scope="col">Napomena</th>
+            <th style="background: #f5f5f5">ODOBRI / ODBACI <br />PREDBILJEŽBU</th>
+            <th>Uredi</th>
+            <th>Obriši</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+        <tr>
+            <td>@p.PredbiljezbaId</td>
+            <td>@p.Datum.ToShortDateString()</td>
+            <td>@p.Ime @p.Prezime</td>
+            <td>@p.Adresa</td>
+            <td>@p.Email</td>
+            <td>@p.Telefon</td>
+            <td style="@(p.Seminar.Popunjen == true ? "color: #E7717C" : "color: #B2D456"); font-weight: 500">@p.Seminar.NazivSeminara</td>
+            <td>@p.Status</td>
+
+            <td>
+                @*@p.Napomena*@
+                @if (@p.Napomena != null)
+                {
+                    <span><i class="far fa-comment-alt"></i></span>
+                }
+            </td>
+
+            <!-- BUTTON: Odobri ili odbaci predbilježbu -->
+            <td style="background: #f5f5f5" class="py-2">
+
+                <div class="btn-group btn-group-sm grid-buttons py-0" role="group" aria-label="Basic example">
+                    <div class="grid-item my-0">
+                        @if (p.Seminar.Popunjen == false && p.Status != "Prihvaćena")
+                        {
+                            <a href="/Predbiljezbe/Odobri/@p.PredbiljezbaId">
+                                <button type="button" class="btn btn-white btn-sm px-2 ml-0">
+                                    Odobri<i class="fas fa-check fa-lg text-my-green pl-2"></i>
+                                </button>
+                            </a>
+                        }
+                    </div>
+                    <div class="grid-item my-0">
+                        @if (p.Status != "Odbijena")
+                        {
+                            <a href="/Predbiljezbe/Odbaci/@p.PredbiljezbaId">
+                                <button type="button" class="btn btn-white btn-sm px-2 mx-0">
+                                    Odbaci<i class="fas fa-times fa-lg text-my-pink pl-2"></i>
+                                </button>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </td>
+
+            <td><a href="~/Predbiljezbe/UrediPredbiljezbu/@p.PredbiljezbaId"><i class="fas fa-pencil-alt text-my-pink"></i></a></td>
+            <td><a href="~/Predbiljezbe/ObrisiPredbiljezbu/@p.PredbiljezbaId"><i class="fas fa-trash-alt text-my-pink"></i></a></td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+

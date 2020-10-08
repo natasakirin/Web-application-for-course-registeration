@@ -1,0 +1,104 @@
+﻿@model AlgebraSeminar.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Registracija";
+}
+
+
+<div class="container my-5">
+    <!--Section: Content-->
+    <section class="text-center">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-lg-6 col-md-6 mb-4 ">
+
+                <!-- Card -->
+                <div class="card card-image card-register h-100">
+
+                    <!-- Pricing card -->
+                    <div class="text-white text-center pricing-card d-flex align-items-center py-3 px-3 rounded">
+
+                        <!-- Content -->
+                        <div class="card-body">
+
+                            <div class="btn-outline-white card p-5">
+                                <h2>@ViewBag.Title.</h2>
+                                <hr />
+                                <h5>Kreiraj novi korisnički račun.</h5>
+                            </div>
+                        </div>
+                        <!-- Content -->
+
+                    </div>
+                    <!-- Pricing card -->
+
+                </div>
+                <!-- Card -->
+
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-lg-6 col-md-6 mb-4">
+
+                <!-- Card -->
+                <div class="card card-image h-100 text-muted text-left">
+
+                    <div class="container p-5">
+
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h4>Upiši svoje podatke.</h4>
+                            <hr />
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Ime, new { @class = "control-label" })
+                                <div class="">
+                                    @Html.TextBoxFor(m => m.Ime, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Prezime, new { @class = "control-label" })
+                                <div class="">
+                                    @Html.TextBoxFor(m => m.Prezime, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = " control-label" })
+                                <div class="">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password, new { @class = " control-label" })
+                                <div class="">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                                <div class="">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn bg-white btn-light-green" value="Registriraj se" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

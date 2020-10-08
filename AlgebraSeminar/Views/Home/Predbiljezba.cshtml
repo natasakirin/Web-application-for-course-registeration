@@ -1,0 +1,70 @@
+﻿@model List<AlgebraSeminar.Models.Seminar>
+
+@{
+    ViewBag.Title = "Seminar";
+    Layout = "~/Views/Shared/_LayoutPocetna.cshtml";
+}
+
+<div class="text-center font-weight-bold mt-4">
+    <p class="">Odaberi jedan od naših seminara i dođi korak bliže ostvarenju svojih snova.</p>
+</div>
+
+<div class="trazilica">
+    <form method="get" class="container">
+        <p class="mx-3 text-white">Pretraži seminare po nazivu ili ključnoj riječi:</p>
+        <!-- Search form -->
+        <div class="input-group mb-4">
+            <input type="text" name="SearchString" class="form-control m-2" placeholder="">
+            <div class="input-group-append">
+                <button class="btn btn-md  waves-effect bg-white m-t" type="submit"
+                        id="button-addon2" value="Traži">
+                    Pretraži
+                </button>
+                <button class="btn btn-md  waves-effect bg-white m-t" type="submit"
+                        id="button-addon2" value="Traži" href="Predbiljezba">
+                    Prikaži sve seminare
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="mt-4 container">
+    <div class="row row-cols-1 row-cols-md-3">
+        @foreach (var s in Model.Where(x => x.Popunjen == false))
+        {
+            <div class="col mb-4">
+                <!-- Card -->
+                <div class="card example hoverable h-100">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img class="card-img-top" src="~/Content/Images/seminari/@s.Slika"
+                             alt="Seminar">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!-- Subtitle -->
+                        <h6 class="font-weight-bold py-3">@s.Podrucje</h6>
+                        <!-- Title -->
+                        <h4 class="card-title text-my-pink text-center pb-3"><strong>@s.NazivSeminara</strong></h4>
+                        <!-- Text -->
+                        <p class="card-text">
+                        <p><strong>Datum: </strong>@s.Datum.ToShortDateString()</p>
+                        <p><strong>Predavac: </strong>@s.Predavac</p>
+                        <p><strong>Trajanje: </strong>@s.TrajanjeSeminaraSati školskih sati</p>
+                    </div>
+
+                    <!-- Card footer -->
+                    <div class="card-footer text-muted text-center ">
+                        <a href="/Home/SeminarInfo/@s.SeminarId" class="stretched-link">Odaberi</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

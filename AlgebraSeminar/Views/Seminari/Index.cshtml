@@ -1,0 +1,67 @@
+﻿@model List<AlgebraSeminar.Models.Seminar>
+
+@{
+    ViewBag.Title = "Seminari";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron bg-my-green">
+    <h1>Podaci o seminarima</h1>
+    <br />
+    <p>Ovdje se nalazi popis svih dostupnih seminara u školi te informacija o datumu početka, njihovoj popunjenosti i sl. </p>
+    <p>Klikom na sljedeći link možete dodati novi seminar.</p>
+    <a href="/Seminari/NoviSeminar"><button type="submit" class="ml-5 mt-3 btn btn-link btn-white">Dodaj novi seminar</button></a>
+</div>
+
+<div class="bg-white px-2">
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Naziv</th>
+                <th scope="col">Datum</th>
+                <th scope="col">Trajanje <br />(šk.sati)</th>
+                <th scope="col">Predavač</th>
+                <th scope="col">Max Broj <br />Polaznika</th>
+                <th scope="col">Upisano <br />polaznika</th>
+                <th scope="col">Popunjenost</th>
+                <th scope="col">Slika</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Uredi</th>
+                <th scope="col">Obriši</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.SeminarId</td>
+                    <td>@s.NazivSeminara</td>
+                    <td>@s.Datum.ToShortDateString()</td>
+                    <td>@s.TrajanjeSeminaraSati </td>
+                    <td>@s.Predavac</td>
+                    <td>@s.MaxBrPolaznika</td>
+                    <td>@s.UpisaniBrPolaznika</td>
+                    <td>
+                        <div>
+                            @if (s.Popunjen == false)
+                            {
+                                <p><span><i class="fas fa-circle" style="color: lawngreen"></i>  NE</span></p>
+                            }
+                            else
+                            {
+                                <p><span><i class="fas fa-circle" style="color: red"></i>  DA</span></p>
+                            }
+                        </div>
+                    </td>
+                    <td>@s.Slika</td>
+                    <td><a href="/Home/SeminarInfo/@s.SeminarId"><i class="fas fa-info-circle text-my-green"></i></a></td>
+                    <td><a href="~/Seminari/UrediSeminar/@s.SeminarId"><i class="fas fa-pencil-alt text-my-green"></i></a></td>
+                    <td><a href="~/Seminari/ObrisiSeminar/@s.SeminarId"><i class="fas fa-trash-alt text-my-green"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

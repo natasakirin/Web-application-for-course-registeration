@@ -1,0 +1,259 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EFEDE9;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #6b655f;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+.bg-my-dark {
+    background-color: #6b655f;
+    color: #f4f5f6;
+}
+
+.bg-my-pink {
+    background-color: #E7717C;
+}
+
+.bg-my-green {
+    background-color: #B2D456 !important;
+}
+
+
+.text-my-dark {
+    color: #6b655f;
+}
+
+.text-my-pink {
+    color: #E7717C;
+}
+
+.text-my-green {
+    color: #B2D456;
+}
+
+.my-gradient {
+    background: linear-gradient(40deg, #FCC495, #cf5f74) !important;
+}
+
+.my-gradient-lite {
+    background: linear-gradient(40deg, #E7717C, #b85579) !important;
+}
+
+.my-gradient-radial {
+    background: radial-gradient(#FCC495, #b85579);
+}
+
+.my-gradient-2 {
+    background: linear-gradient(40deg, #E7717C, #B2D456) !important;
+}
+
+
+/* ---------------------------  NAVBAR --------------------------------------------------- */
+.navbar {
+    background-color: #6b655f;
+}
+
+.navbar ul li a {
+    color: #f4f5f6;
+}
+
+.logo {
+    height: 50px;
+    margin: 0 3rem;
+}
+
+
+/* ---------------------------  HOMEPAGE HEADER --------------------------------------------------- */
+
+.jumbo-header {
+    height: 35vh;
+    background: url('./Images/Header pink.jpg') center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.jumbo-header-main {
+    height: 80vh;
+}
+
+.text-grad-title {
+    text-transform: uppercase;
+    background: linear-gradient(to right, #E7717C 30%, #B2D456 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-family: 'Papyrus', fantasy;
+    text-transform: capitalize;
+    font-size: 6rem;
+    text-shadow: 0px 10px 10px #6b655f;
+}
+
+
+/* --------------------------------------- REGISTER ----------------------------------------------*/
+
+.card-register {
+    background: url('./Images/register.jpg') center center;
+    background-size: cover;
+}
+
+
+
+/* ---------------------------------  Kontakt  --------------------------------- */
+
+.map-container {
+    height: 400px;
+    position: relative;
+}
+
+    .map-container iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
+
+
+/* --------------------------------------- SEARCH ----------------------------------------  */
+
+.trazilica {
+    border: 1px solid #676167;
+    padding: 2rem;
+    background-color: #6b655f;
+    color: #676167;
+}
+
+
+
+
+/* ------------------------------- CARDS: Pocetna stranica - svi seminari -------------------------------------  */
+
+.card-footer {
+    background-color: #B2D456;
+    border-top: 2px solid #B2D456;
+}
+
+.card-footer a {
+    color: #FFFAF4;
+}
+
+
+/* -------------------------------- DETALJI O SEMINARU ------------------------------------------- */
+
+.button-hover:hover {
+    background-color: #E7717C;
+    color: #f4f5f6;
+}
+
+
+
+
+/* -------------------------- Nova predbiljezba: MDB ------------------------------------*/
+
+/* Steps */
+.step {
+    list-style: none;
+    margin: 0;
+}
+
+.step-element {
+    display: flex;
+    padding: 1rem 0;
+}
+
+.step-number {
+    position: relative;
+    width: 7rem;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+    .step-number .number {
+        color: #bfc5ca;
+        background-color: #eaeff4;
+        font-size: 1.5rem;
+    }
+
+    .step-number .number {
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+    }
+
+.number {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    border-radius: 10rem;
+}
+
+.step-number::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 48px;
+    bottom: -2rem;
+    margin-left: -1px;
+    border-left: 2px dashed #eaeff4;
+}
+
+.step .step-element:last-child .step-number::before {
+    bottom: 1rem;
+}
+
+
+
+/* -------------------------  Formular za predbiljezbu  ----------------------------------*/
+
+.formular {
+    background-color: #e9ecef;
+    margin: 0 3rem;
+    padding: 2rem 7rem;
+}
+.formular-sem {
+    background-color: #e9ecef;
+}
+
+
+/* --------------------------------  Grid za prihvati/odbaci buttons  -----------------------------------------*/
+
+.grid-buttons {
+    display: grid;
+    grid-template-columns: 55px 55px;
+}
+
+
+/* --------------------------------  Validacije  -----------------------------------------*/
+
+/* Validation helpers */
+
+.input-validation-error {
+    border: 1px solid #B2D456 !important;
+    background-color: #B2D456;
+}
+
+.validation-summary-errors {
+    color: #B2D456;
+}
+

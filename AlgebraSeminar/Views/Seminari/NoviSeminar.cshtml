@@ -1,0 +1,86 @@
+﻿@model AlgebraSeminar.Models.Seminar
+@{
+    ViewBag.Title = "NoviSeminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 mb-5 pt-5">
+
+    <!--Section: Content-->
+    <section class="white-text">
+        <!-- Grid row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card z-depth-2">
+                    <div class="card-body p-0">
+                        <div class="row mx-0">
+
+                            <div class="col-lg-6 py-5 px-md-5 bg-my-green">
+                                <h4 class="font-weight-bold ml-3 mb-4 pb-2">Informacije</h4>
+                                <p>Detalji o unosu novog seminara</p>
+                                <ul class="fa-ul mb-5">
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lorem ipsum</li>
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lorem ipsum</li>
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lorem ipsum</li>
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lorem ipsum</li>
+                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Lorem ipsum</li>
+                                </ul>
+                                <button type="button" class="btn btn-white btn-link">@Html.ActionLink("Odustani", "Index")</button>
+                            </div>
+
+                            <div class="col-lg-6 rounded-right py-5 px-md-5 formular-sem text-my-dark bg-white">
+                                <h4 class="font-weight-bold ml-3 mb-4 pb-2">Registracija novog seminara</h4>
+
+                                <div class="">
+                                    @if (ViewBag.Poruka == null)
+                                    {
+                                        using (Html.BeginForm())
+                                        {
+                                            @Html.ValidationSummary()
+
+                                            <label>Naziv seminara:</label><br />
+                                            @Html.EditorFor(x => x.NazivSeminara)
+                                            <br /><br />
+
+                                            <label>Područje seminara:</label><br />
+                                            @Html.EditorFor(x => x.Podrucje)
+                                            <br /><br />
+
+                                            <label>Opis:</label><br />
+                                            @Html.EditorFor(x => x.Opis)
+                                            <br /><br />
+
+                                            <label>Datum početka seminara:</label><br />
+                                            @Html.EditorFor(x => x.Datum)
+                                            <br /><br />
+
+                                            <label>Trajanje seminara (broj sati):</label><br />
+                                            @Html.EditorFor(x => x.TrajanjeSeminaraSati)
+                                            <br /><br />
+
+                                            <label>Predavač:</label><br />
+                                            @Html.EditorFor(x => x.Predavac)
+                                            <br /><br />
+
+                                            <label>Maximalni broj polaznika:</label><br />
+                                            @Html.EditorFor(x => x.MaxBrPolaznika)
+                                            <br /><br />
+
+                                            <button type="submit" class="ml-5 mt-3 btn btn-link" style="background-color: #B2D456; color: white">Spremi</button>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <h4>@ViewBag.Poruka</h4>
+                                        <a href="/Seminari/Index"><button type="button" class="ml-5 mt-3 btn btn-link" style="background-color: #B2D456; color: white">U redu</button></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

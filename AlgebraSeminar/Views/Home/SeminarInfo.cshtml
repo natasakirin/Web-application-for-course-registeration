@@ -1,0 +1,39 @@
+﻿@model AlgebraSeminar.Models.Seminar
+
+@{
+    ViewBag.Title = "SeminarInfo";
+}
+
+<!-- jumbotron -->
+<div class="jumbotron text-center p-4">
+    <!-- Grid row -->
+    <div class="row">
+        <!-- Grid column -->
+        <div class="col-md-4 offset-md-1 mx-3 my-3">
+            <!-- image -->
+            <div class="view overlay">
+                <img src="~/Content/Images/seminari/@Model.Slika" class="img-fluid" alt="">
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-7 text-md-left ml-3 my-3">
+            <h1 class="h3 mb-3">@Model.Podrucje</h1>
+            <h1 class="h1 mb-4 text-my-pink">@Model.NazivSeminara</h1>
+            <p class="font-weight-normal">@Model.Opis</p>
+            @*<p class="font-weight-normal">
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque, totam
+                    rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                    dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.
+                </p>*@
+            <p class="font-weight-normal">Predavač:  <strong>@Model.Predavac</strong></p>
+            <p class="font-weight-normal">Datum:  <strong>@Model.Datum.ToShortDateString()</strong></p>
+        </div>
+    </div>
+
+    <a href="/Predbiljezbe/NovaPredbiljezba/@Model.SeminarId"><button type="submit" class="btn bg-my-dark btn-lg btn-block button-hover">Predbilježi se</button></a>
+</div>
+
+

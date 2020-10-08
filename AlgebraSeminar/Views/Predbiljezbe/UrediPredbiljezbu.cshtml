@@ -1,0 +1,140 @@
+﻿@model AlgebraSeminar.Models.Predbiljezba
+
+@{
+    ViewBag.Title = "UrediPredbiljezbu";
+}
+
+<div class="container mt-5 mb-5 pt-5">
+
+    <!--Section: Content-->
+    <section class="white-text">
+
+        <!-- Grid row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card z-depth-2">
+                    <div class="card-body p-0">
+                        <div class="row mx-0">
+
+                            @if (ViewBag.Poruka == null)
+                            {
+                                <div class="col-lg-6 py-5 px-md-5 bg-my-green">
+
+                                    <!-- Dugmic za modal - upute o azuriranju podataka o predbiljezbi-->
+                                    <button type="button" class="btn mb-5 bg-my-pink float-right btn-sm" data-toggle="modal" data-target="#centralModalSm">
+                                        Upute
+                                    </button>
+
+                                    <p>Detalji o odabranoj predbilježbi</p>
+
+                                    <ul class="fa-ul mb-5">
+                                        <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span><strong>Broj predbilježbe: </strong>@Model.PredbiljezbaId</li>
+                                        <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span><strong>Datum predbilježbe: </strong>@Model.Datum.ToShortDateString()</li>
+                                        <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span><strong>Odabrani seminar: </strong>@Model.Seminar.NazivSeminara</li>
+                                        <li class="mb-2">
+
+                                            <!-- Status se samo ispisuje / Jednom kad se status promijeni iz Zaprimljeno u '/-, više se ne može vratiti na Zaprimljeno -->
+                                            <span class="fa-li"><i class="fas fa-check"></i></span><strong>Status predbilježbe:  </strong>
+                                            @if (Model.Status == "Prihvaćena")
+                                            {
+                                                <i class="fas fa-check fa-lg ml-3 mr-1 fa-2x text-my-pink"></i> @Model.Status
+                                            }
+                                            else if (Model.Status == "Odbijena")
+                                            {
+                                                <i class="fas fa-times fa-lg ml-3 mr-1 fa-2x text-my-pink"></i> @Model.Status
+                                            }
+                                            else if (Model.Status == "Zaprimljena")
+                                            {
+                                                <i class="fas fa-folder-open fa-lg ml-3 mr-1 fa-2x text-my-dark"></i> @Model.Status
+                                            }
+                                        </li>
+                                    </ul>
+
+                                    <button type="button" class="btn btn-white btn-link">@Html.ActionLink("Odustani", "Index")</button>
+
+                                    <!-- Modal: Info o mogucnostima uredjivanja infomacija o predbiljezbama-->
+                                    <div>
+                                        <!-- Central Modal Small -->
+                                        <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                             aria-hidden="true">
+
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title w-100 text-my-dark" id="myModalLabel">Kako uređivati podatke o predbilježbi</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body text-my-dark">
+                                                        <p>Na ovoj stranici moguće je uređivati samo osobne podatke o korisniku (ime, adresa, itd.)</p>
+                                                        <p>Neke informacije nije moguće mijenjati ovim putem. Npr. U slučaju da se želi zamijeniti seminar na kojeg se korisnik predbilježio, potrebno je napraviti novu predbilježbu.</p>
+                                                        <p>Status predbilježbe moguće je mijenjati na prethodnoj stranici, direktno iz <a href="/Predbiljezbe/Index">popisa svih predbilježbi</a>.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="col-lg-6 rounded-right py-5 px-md-5 formular-sem text-my-dark bg-white">
+                                <h4 class="font-weight-bold ml-3 mb-4 pb-2">Uredi osobne podatke</h4>
+
+                                <div class="">
+                                    @if (ViewBag.Poruka == null)
+                                    {
+                                        using (Html.BeginForm())
+                                        {
+                                            /* skrivena polja koja ne mijenjamo */
+                                            @Html.HiddenFor(x => x.PredbiljezbaId)
+                                            @Html.HiddenFor(x => x.Datum)
+                                            @Html.HiddenFor(x => x.SeminarId)
+                                            @Html.HiddenFor(x => x.Status)
+
+                                            <label>Ime:</label><br />
+                                            @Html.EditorFor(x => x.Ime)
+                                            <br /><br />
+
+                                            <label>Prezime:</label><br />
+                                            @Html.EditorFor(x => x.Prezime)
+                                            <br /><br />
+
+                                            <label>Adresa:</label><br />
+                                            @Html.EditorFor(x => x.Adresa)
+                                            <br /><br />
+
+                                            <label>Email:</label><br />
+                                            @Html.EditorFor(x => x.Email)
+                                            <br /><br />
+
+                                            <label>Telefon:</label><br />
+                                            @Html.EditorFor(x => x.Telefon)
+                                            <br /><br />
+
+                                            <hr>
+
+                                            <label>Napomena osoblja škole:</label><br />
+                                            @Html.EditorFor(x => x.Napomena)
+                                            <br /><br />
+
+                                            <br /><br />
+                                            <button type="submit" class="ml-5 mt-3 btn btn-link" style="background-color: #B2D456; color: white">Spremi promjene</button>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <h5 class="mt-4">@ViewBag.Poruka</h5>
+                                        <a href="/Predbiljezbe/Index"><button type="button" class="ml-5 mt-3 btn btn-link" style="background-color: #B2D456; color: white">U redu</button></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+

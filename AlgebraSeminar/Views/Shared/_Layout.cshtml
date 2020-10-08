@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Online seminari</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/Site.css" />
+</head>
+
+<body>
+    <!-- Navbar: linkovi za seminare i predbilježbe prikazuju se samo prijavljenim korisnicima -->
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+        <a href="/Home/Predbiljezba"><img src="~/Content/Images/logo2.png" class="logo" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="/Home/Predbiljezba">Početna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="/Home/ONama">O nama</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="/Home/Kontakt">Kontakt</a>
+                </li>
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/Seminari/Index">Seminari</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/Predbiljezbe/Index">Predbilježbe</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        @Html.Partial("_LoginPartial")
+    </nav>
+
+    <div class="jumbotron jumbo-header">
+        <div>
+            <h2 class="display-4">@ViewBag.Title</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        @RenderBody()
+        <hr />
+    </div>
+
+    <footer class="page-footer font-small bg-my-dark darken-3">
+        <!-- Footer Elements -->
+        <div class="container">
+            <!-- Grid row-->
+            <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-12 py-5">
+                    <div class=" flex-center">
+                        <!-- Facebook -->
+                        <a class="fb-ic" target="_blank" href="https://www.facebook.com/">
+                            <i class="fab fa-facebook-f fa-lg mr-md-5 mr-3 fa-2x text-my-green"> </i>
+                        </a>
+                        <!-- Twitter -->
+                        <a class="tw-ic" target="_blank" href="https://www.twitter.com/">
+                            <i class="fab fa-twitter fa-lg mr-md-5 mr-3 fa-2x text-my-green"> </i>
+                        </a>
+                        <!--Linkedin -->
+                        <a class="li-ic" target="_blank" href="https://www.linkedin.com/" />
+                        <i class="fab fa-linkedin-in fa-lg mr-md-5 mr-3 fa-2x text-my-green"> </i>
+                        </a>
+                        <!--Instagram-->
+                        <a class="ins-ic" target="_blank" href="https://www.instagram.com/" />
+                        <i class="fab fa-instagram fa-lg mr-md-5 mr-3 fa-2x text-my-green"> </i>
+                        </a>
+                        <!--Pinterest-->
+                        <a class="pin-ic" target="_blank" href="https://www.pinterest.com/" />
+                        <i class="fab fa-pinterest fa-lg mr-md-5 mr-3 fa-2x text-my-green"> </i>
+                        </a>
+                        <!--Youtube-->
+                        <a class="pin-ic" target="_blank" href="https://www.youtube.com/" />
+                        <i class="fab fa-youtube fa-lg fa-2x text-my-green"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            &copy; @DateTime.Now.Year - <a href="/Home/Predbiljezba">Seminar</a>
+        </div>
+    </footer>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+    <script src="~/Scripts/site.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

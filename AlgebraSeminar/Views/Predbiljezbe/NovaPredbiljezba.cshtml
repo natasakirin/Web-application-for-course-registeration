@@ -1,0 +1,91 @@
+﻿@model AlgebraSeminar.Models.Predbiljezba
+@{
+    ViewBag.Title = "Online predbilježba";
+}
+
+<div class="container z-depth-1 my-5 pt-5 pb-3 px-5 bg-white">
+    <section>
+        <h3 class="font-weight-bold text-center dark-grey-text pb-2">Nikad lakše do diplome</h3>
+
+        <div class="row align-items-center">
+            <!-- Steps -->
+            <div class="col-lg-6 mb-4">
+                <ol class="step pl-0">
+                    <li class="step-element pb-0">
+                        <div class="step-number ">
+                            <span class="number ">1</span>
+                        </div>
+                        <div class="step-excerpt">
+                            <h6 class="font-weight-bold dark-grey-text mb-3">Informiraj se!</h6>
+                            <p class="text-muted   text-my-green">Potraži informacije o svim seminarima u ponudi naše škole!</p>
+                        </div>
+                    </li>
+                    <li class="step-element pb-0">
+                        <div class="step-number">
+                            <span class="number">2</span>
+                        </div>
+                        <div class="step-excerpt">
+                            <h6 class="font-weight-bold dark-grey-text mb-3">Odaberi seminar!</h6>
+                            <p class="text-muted">Odaberi seminar koji te zanima! Istina, uz toliko dobrih seminara, to baš i nije jednostavan zadatak. </p>
+                        </div>
+                    </li>
+                    <li class="step-element pb-0">
+                        <div class="step-number">
+                            <span class="number">3</span>
+                        </div>
+                        <div class="step-excerpt">
+                            <h6 class="font-weight-bold dark-grey-text mb-3">Ispuni obrazac</h6>
+                            <p class="text-muted">Ispuni obrazac te pričekaj da te kontaktira osoblje naše škole!</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Formular -->
+            <div class="col-lg-6 mb-4 mt-5">
+                <div class="formular my-gradient">
+
+                    @if (ViewBag.Poruka == null)
+                    {
+                        <h4>Upiši svoje osobne podatke</h4>
+                        using (Html.BeginForm())
+                        {
+                            @Html.ValidationSummary()
+
+                            <input type="hidden" value="@ViewBag.SeminarId" name="SeminarId" />
+
+                            <label>Ime:</label><br />
+                            @Html.EditorFor(x => x.Ime)
+                            <br /><br />
+
+                            <label>Prezime:</label><br />
+                            @Html.EditorFor(x => x.Prezime)
+                            <br /><br />
+
+                            <label>Adresa:</label><br />
+                            @Html.EditorFor(x => x.Adresa)
+                            <br /><br />
+
+                            <label>Email:</label><br />
+                            @Html.EditorFor(x => x.Email)
+                            <br /><br />
+
+                            <label>Telefon:</label><br />
+                            @Html.EditorFor(x => x.Telefon)
+                            <br /><br />
+
+                            <a href="/Predbiljezbe/NovaPredbiljezba"><button type="submit" class="ml-3 mt-3 p-3 btn btn-link btn-white">Prijavi se</button></a>
+                        }
+                    }
+                    else
+                    {
+                        <h4>@ViewBag.Poruka</h4>
+                        <a href="/Home/Predbiljezba"><button type="button" class="ml-5 mt-3 btn btn-link btn-white">U redu</button></a>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
